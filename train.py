@@ -214,7 +214,7 @@ def main():
     parser.add_argument('-val_path', default=None)     # bpe encoded data
 
     parser.add_argument('-epoch', type=int, default=400)
-    parser.add_argument('-b', '--batch_size', type=int, default=256)
+    parser.add_argument('-b', '--batch_size', type=int, default=16)
 
     parser.add_argument('-d_model', type=int, default=512)
     parser.add_argument('-d_inner_hid', type=int, default=2048)
@@ -228,7 +228,7 @@ def main():
     parser.add_argument('-seed', type=int, default=None)
 
     parser.add_argument('-dropout', type=float, default=0.1)
-    parser.add_argument('-embs_share_weight', action='store_true', default='True')
+    parser.add_argument('-embs_share_weight', action='store_true')
     parser.add_argument('-proj_share_weight', action='store_true', default='True')
     parser.add_argument('-scale_emb_or_prj', type=str, default='prj')
 
@@ -236,7 +236,7 @@ def main():
     parser.add_argument('-use_tb', action='store_true')
     parser.add_argument('-save_mode', type=str, choices=['all', 'best'], default='best')
 
-    parser.add_argument('-no_cuda', action='store_true')
+    parser.add_argument('-no_cuda', action='store_true', default='True')
     parser.add_argument('-label_smoothing', action='store_true', default='True')
 
     opt = parser.parse_args()
