@@ -246,12 +246,12 @@ def main_wo_bpe():
     Usage: python preprocess.py -lang_src de -lang_trg en -save_data multi30k_de_en.pkl -share_vocab
     '''
 
-    spacy_support_langs = ['de', 'el', 'en', 'es', 'fr', 'it', 'lt', 'nb', 'nl', 'pt']
+    spacy_support_langs = ['de', 'el', 'en', 'es', 'fr', 'it', 'lt', 'nb', 'nl', 'pt', 'de_core_news_sm', 'en_core_web_sm']
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-lang_src', required=True, choices=spacy_support_langs)
-    parser.add_argument('-lang_trg', required=True, choices=spacy_support_langs)
-    parser.add_argument('-save_data', required=True)
+    parser.add_argument('-lang_src', choices=spacy_support_langs, default='de_core_news_sm')
+    parser.add_argument('-lang_trg', choices=spacy_support_langs, default='en_core_web_sm')
+    parser.add_argument('-save_data', default='m30k_deen_shr.pkl')
     parser.add_argument('-data_src', type=str, default=None)
     parser.add_argument('-data_trg', type=str, default=None)
 
@@ -288,7 +288,7 @@ def main_wo_bpe():
     MIN_FREQ = opt.min_word_count
 
     if not all([opt.data_src, opt.data_trg]):
-        assert {opt.lang_src, opt.lang_trg} == {'de', 'en'}
+        assert {opt.lang_src, opt.lang_trg} == {'de_core_news_sm', 'en_core_web_sm'}
     else:
         # Pack custom txt file into example datasets
         raise NotImplementedError
